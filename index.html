@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="zh">
     <head>
-        <meta charsets="UTF-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>CoolCLK 的个人网站</title>
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -193,6 +193,8 @@
             window.onload = function() {
                 goTop(0);
                 processElements();
+
+                document.getElementById('carouselProjectIndicators').addEventListener('slid.bs.carousel', function() { processElements(); });
             }
         </script>
     </head>
@@ -200,7 +202,7 @@
         <div class="header" id="header">
             <div style="display: inline-block; width: 100%;">
                 <a class="item left" href="javascript:void(0);" onclick="goTop(0);">主页</a>
-                <a class="item left" href="javascript:void(0);" onclick="goTop(940);">作品</a>
+                <a class="item left" href="javascript:void(0);" onclick="goTop(document.documentElement.clientHeight);">作品</a>
                 <a class="item right" href="https://space.bilibili.com/397180026"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
                 <a class="item right" href="https://github.com/CoolCLK"><img id="headerGithubFavicon" src="https://github.githubassets.com/favicons/favicon-dark.svg" style="height: 1.25em;"> Github</a>
             </div>
@@ -212,17 +214,17 @@
                 <a class="typing-text" typing-text="下滑发现新世界~" typing-relay="100" typing-timeout="3400"></a>
             </div>
         </div>
-        <div class="content" style="background: linear-gradient(180deg, black, white 37.5%); color: black; display: flex; justify-content: center; align-items: center; height: auto;">
+        <div class="content" style="background: linear-gradient(180deg, black, white 37.5%); color: black; display: flex; justify-content: center; align-items: center;">
             <div style="margin: 10% 10% 5% 10%;">
                 <p style="font-size: 200%; font-weight: bold;" class="typing-text" typing-text="作品 PROJECTS" typing-relay="100" typing-foreground="true"></p>
                 
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-pause="hover">
+                <div id="carouselProjectIndicators" class="carousel slide" data-bs-ride="carousel" data-pause="hover">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label=""></button>
+                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label=""></button>
+                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="1" aria-label=""></button>
+                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="2" aria-label=""></button>
+                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="3" aria-label=""></button>
+                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="4" aria-label=""></button>
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -261,7 +263,7 @@
                                 <p style="float: right;">
                                     <a class="link" href="https://github.com/CoolCLK/BedwarsGames"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
                                     <a class="link" href="https://www.mcbbs.net/thread-1420616-1-1.html"><img src="https://www.mcbbs.net/favicon.ico" style="height: 1.25em;"> MCBBS</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1C84y1U7oq/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
+                                    <a class="link" href="https://www.bilibili.com/video/BV1M34y1u7rr/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
                                 </p>
                             </div>
                         </div>
@@ -273,8 +275,8 @@
                                 <br>
                                 <a style="font-size: 100%;" class="typing-text" typing-text="    这是一款基于 Minecraft Forge 1.8.9 与 Mixin 的字节码反编译作弊类模组, 装载后可让你变得强大。" typing-relay="50"></a>
                                 <p style="float: right;">
-                                    <a class="link" href="https://github.com/CoolCLK/SkyDimension"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1bN411e7pY/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
+                                    <a class="link" href="https://github.com/CoolCLK/Faker"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
+                                    <a class="link" href="https://www.bilibili.com/video/BV1x14y1v74r/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
                                 </p>
                             </div>
                         </div>
@@ -292,11 +294,11 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"></span>
                     </button>
