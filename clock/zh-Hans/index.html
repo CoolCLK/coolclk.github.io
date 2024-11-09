@@ -18,6 +18,56 @@
             display: flex;
         }
 
+        #unsupportedExplorerContainer {
+            display: none;
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            -moz-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            -moz-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-justify-content: center;
+            -moz-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            -webkit-backdrop-filter: blur(1rem);
+            backdrop-filter: blur(1rem);
+            * {
+                font-size: 5rem;
+            }
+        }
+
+        #unsupportedExplorerContainer.shown {
+            display: block;
+            -webkit-animation: unsupportedExplorerContainerShown .5s ease;
+            -moz-animation: unsupportedExplorerContainerShown .5s ease;
+            -o-animation: unsupportedExplorerContainerShown .5s ease;
+            animation: unsupportedExplorerContainerShown .5s ease;
+        }
+
+        @keyframes unsupportedExplorerContainerShown {
+            from {
+                -webkit-backdrop-filter: blur(0);
+                backdrop-filter: blur(0);
+                opacity: 0;
+            }
+            to {
+                -webkit-backdrop-filter: blur(1rem);
+                backdrop-filter: blur(1rem);
+                opacity: 1;
+            }
+        }
+
         #clockContainer {
             z-index: -1;
             position: absolute;
@@ -26,25 +76,65 @@
             width: calc(100vw - 2rem);
             height: calc(100vh - 2rem);
             display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            -moz-flex-direction: column;
             flex-direction: column;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            -moz-flex-wrap: nowrap;
             flex-wrap: nowrap;
+            -webkit-justify-content: center;
+            -moz-justify-content: center;
             justify-content: center;
+            -webkit-align-items: center;
             align-items: center;
             padding: 1rem;
             .fullscreen :hover {
                 cursor: pointer;
             }
             #clock {
+                opacity: 0;
+                translate: 0 1rem;
                 font-size: 15rem;
                 font-weight: 500;
+                -webkit-filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
                 filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
+                -webkit-transition: .2s ease all;
+                -moz-transition: .2s ease all;
+                -o-transition: .2s ease all;
                 transition: .2s ease all;
+                -webkit-animation: 1s ease 0s both clockElementShown;
+                -moz-animation: 1s ease 0s both clockElementShown;
+                -o-animation: 1s ease 0s both clockElementShown;
+                animation: 1s ease 0s both clockElementShown;
             }
             #date {
+                opacity: 0;
+                translate: 0 1rem;
                 font-size: 1.5rem;
                 font-weight: 300;
+                -webkit-filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
                 filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
+                -webkit-transition: .2s ease all;
+                -moz-transition: .2s ease all;
+                -o-transition: .2s ease all;
                 transition: .2s ease all;
+                -webkit-animation: 1s ease .2s both clockElementShown;
+                -moz-animation: 1s ease .2s both clockElementShown;
+                -o-animation: 1s ease .2s both clockElementShown;
+                animation: 1s ease .2s both clockElementShown;
+            }
+        }
+
+        @keyframes clockElementShown {
+            from {
+                opacity: 0;
+                translate: 0 1rem;
+            }
+            to {
+                opacity: 1;
+                translate: 0 0;
             }
         }
 
@@ -56,31 +146,73 @@
             width: calc(100vw - 2rem);
             height: auto;
             display: flex;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            -moz-flex-direction: row;
             flex-direction: row;
+            -webkit-flex-wrap: nowrap;
+            -ms-flex-wrap: nowrap;
+            -moz-flex-wrap: nowrap;
             flex-wrap: nowrap;
+            -webkit-justify-content: space-between;
+            -moz-justify-content: space-between;
             justify-content: space-between;
+            -webkit-align-items: center;
             align-items: center;
             padding: 1rem;
             * {
+                -webkit-transition: .2s ease all;
+                -moz-transition: .2s ease all;
+                -o-transition: .2s ease all;
                 transition: .2s ease all;
             }
             * :hover {
                 cursor: pointer;
                 translate: 0 -5px 3px;
+                -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
                 filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
             }
         }
         </style>
         <script type="text/javascript">
         const containerElement = document.getElementById('clockContainer');
+        var stuckDate = new Date();
+        var clockUpdater = window.setInterval(function() { updateClock(new Date()); }, 50);
 
         window.onload = function() {
-            self.setInterval(updateClock, 50);
+            document.addEventListener('visibilitychange', function(event) {
+                let state = document.visibilityState;
+                if (state == 'hidden') {
+                    clockBlur();
+                } else if (state == 'visible') {
+                    clockFocus()
+                }
+            });
         }
 
-        updateClock = function() {
+        clockBlur = function() {
+            window.clearInterval(clockUpdater);
+            clockUpdater = null;
+            stuckDate = new Date();
+        }
+
+        clockFocus = function() {
+            const length = 500, delay = 50, focusDate = new Date();
+            const skipMilliseconds = (focusDate.getTime() - stuckDate.getTime()) / (length / delay);
+            var animatedDate = stuckDate;
+            clockUpdater = window.setInterval(function() {
+                if (animatedDate.getTime() > focusDate.getTime()) {
+                    window.clearInterval(clockUpdater);
+                    clockUpdater = window.setInterval(function() { updateClock(new Date()); }, 50);
+                    return;
+                }
+                updateClock(new Date(animatedDate));
+                animatedDate = new Date(animatedDate.getTime() + skipMilliseconds);
+            }, delay);
+        }
+
+        updateClock = function(nowDate) {
             const clockElement = document.getElementById('clock'), dateElement = document.getElementById('date');
-            const nowDate = new Date();
             const year = nowDate.getFullYear(), month = nowDate.getMonth(), date = nowDate.getDate(), day = nowDate.getDay(), hours = nowDate.getHours(), minutes = nowDate.getMinutes(), seconds = nowDate.getSeconds();
             clockElement.innerText = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
             dateElement.innerText = year + ' 年 ' + (month < 10 ? '0' : '') + month + ' 月 ' + (date < 10 ? '0' : '') + date + ' 日   星期' + dayToChinese(day);
@@ -109,9 +241,12 @@
             <a id="date"></a>
         </div>
         <div class="navigationContainer">
-            <a onclick="clockFullscreen()">
+            <a onclick="clockFullscreen()" style="-webkit-animation: 1s ease .5s both clockElementShown; -moz-animation: 1s ease .5s both clockElementShown; -o-animation: 1s ease .5s both clockElementShown; animation: 1s ease .5s both clockElementShown;">
                 <svg class="icon" style="width: 3rem; height: 3rem; vertical-align: middle; fill: currentColor; overflow: hidden;" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="2732"><path d="M170.666667 170.666667v213.333333H85.333333V85.333333h298.666667v85.333334H170.666667z m682.666666 213.333333V170.666667h-213.333333V85.333333h298.666667v298.666667h-85.333334zM170.666667 640v213.333333h213.333333v85.333334H85.333333v-298.666667h85.333334z m682.666666 0h85.333334v298.666667h-298.666667v-85.333334h213.333333v-213.333333z" fill="#2E2F30" p-id="2733"></path></svg>
             </a>
+        </div>
+        <div id="unsupportedExplorerContainer">
+            <a>你正在使用不被支持的浏览器。</a>
         </div>
     </body>
 </html>
