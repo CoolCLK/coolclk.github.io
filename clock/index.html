@@ -2,7 +2,27 @@
 <html lang="">
     <script>
         window.onload = function() {
-            self.location.href = 'zh-Hans/index.html';
+            jumpLanguage(navigator.language);
+        }
+
+        jumpLanguage = function(language) {
+            switch (language) {
+                case 'zh-CN':
+                case 'zh-Hans': {
+                    self.location.href = 'zh-Hans';
+                    break;
+                }
+                case 'en':
+                case 'en-US':
+                case 'en-GB': {
+                    self.location.href = 'en-US';
+                    break;
+                }
+                default: {
+                    jumpLanguage('zh-Hans');
+                    break;
+                }
+            }
         }
     </script>
 </html>
