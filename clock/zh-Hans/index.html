@@ -23,21 +23,22 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
+                width: calc(100vw - 2rem);
+                height: calc(100vh - 2rem);
                 display: flex;
                 flex-direction: column;
                 flex-wrap: nowrap;
                 justify-content: center;
                 align-items: center;
+                padding: 1rem;
                 .fullscreen :hover {
                     cursor: pointer;
                 }
                 #clock {
-                    font-size: calc(15vw);
+                    font-size: 15rem;
                 }
                 #date {
-                    font-size: calc(3vw);
+                    font-size: 2rem;
                 }
             }
 
