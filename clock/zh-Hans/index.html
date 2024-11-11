@@ -213,7 +213,7 @@
 
         updateClock = function(nowDate) {
             const clockElement = document.getElementById('clock'), dateElement = document.getElementById('date');
-            const year = nowDate.getFullYear(), month = nowDate.getMonth(), date = nowDate.getDate(), day = nowDate.getDay(), hours = nowDate.getHours(), minutes = nowDate.getMinutes(), seconds = nowDate.getSeconds();
+            const year = nowDate.getFullYear(), month = nowDate.getMonth() + 1, date = nowDate.getDate(), day = nowDate.getDay(), hours = nowDate.getHours(), minutes = nowDate.getMinutes(), seconds = nowDate.getSeconds();
             clockElement.innerText = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
             dateElement.innerText = year + ' 年 ' + (month < 10 ? '0' : '') + month + ' 月 ' + (date < 10 ? '0' : '') + date + ' 日   星期' + dayToChinese(day);
         }
