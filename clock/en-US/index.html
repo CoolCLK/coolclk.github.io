@@ -214,7 +214,7 @@
         updateClock = function(nowDate) {
             const clockElement = document.getElementById('clock'), dateElement = document.getElementById('date');
             const year = nowDate.getFullYear(), month = nowDate.getMonth(), date = nowDate.getDate(), day = nowDate.getDay(), hours = nowDate.getHours(), minutes = nowDate.getMinutes(), seconds = nowDate.getSeconds();
-            const halfHours = (hours > 0 && hours <= 12) ? hours % 12 : hours;
+            const halfHours = (hours > 0 && hours <= 12) ? hours : hours % 12;
             clockElement.innerText = (halfHours < 10 ? '0' : '') + halfHours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + (hours < 12 ? 'AM' : 'PM');
             dateElement.innerText = dayToEnglish(day) + ', ' + monthToEnglish(month) + ' ' + dateToEnglish(date) + ', ' + year;
         }
