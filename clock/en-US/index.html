@@ -214,16 +214,20 @@
         updateClock = function(nowDate) {
             const clockElement = document.getElementById('clock'), dateElement = document.getElementById('date');
             const year = nowDate.getFullYear(), month = nowDate.getMonth(), date = nowDate.getDate(), day = nowDate.getDay(), hours = nowDate.getHours(), minutes = nowDate.getMinutes(), seconds = nowDate.getSeconds();
-            clockElement.innerText = ((hours % 12) < 10 ? '0' : '') + (hours % 12) + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + (hours < 12 ? 'AM' : 'PM');
+            const halfHours = (hours > 0 && hours <= 12) ? hours % 12 : hours;
+            clockElement.innerText = (halfHours < 10 ? '0' : '') + halfHours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + (hours < 12 ? 'AM' : 'PM');
             dateElement.innerText = dayToEnglish(day) + ', ' + monthToEnglish(month) + ' ' + dateToEnglish(date) + ', ' + year;
         }
 
         monthToEnglish = function(number) {
-            const months = ['January', 'February', 'March', 'April', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             return months[number];
         }
 
         dateToEnglish = function(number) {
+            if (number == 11 || number == 12) {
+                return number + 'th';
+            }
             return number + (number % 10 == 1 ? 'st' : (number % 10 == 2 ? 'nd' : (number % 10 == 3 ? 'rd' : 'th')));
         }
 
