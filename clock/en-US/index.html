@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="en-US">
     <head>
         <meta charset="UTF-8" />
         <title>Large Clock</title>
@@ -225,7 +225,7 @@
         }
 
         dateToEnglish = function(number) {
-            if (number == 11 || number == 12) {
+            if (number == 11 || number == 12 || number == 13) {
                 return number + 'th';
             }
             return number + (number % 10 == 1 ? 'st' : (number % 10 == 2 ? 'nd' : (number % 10 == 3 ? 'rd' : 'th')));
