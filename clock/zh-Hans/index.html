@@ -4,9 +4,40 @@
         <meta charset="UTF-8" />
         <title>大钟表</title>
         <style>
+        :root {
+            --font-color: inherit;
+            --background-color: inherit;
+            @media (prefers-color-scheme: light) {
+                --font-color: rgb(0, 0, 0);
+                --background-color: rgb(255, 255, 255);
+            }
+            @media (prefers-color-scheme: dark) {
+                --font-color: rgb(255, 255, 255);
+                --background-color: rgb(0, 0, 0);
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
+            transition: .2s ease all;
+            color: var(--font-color);
+        }
+
+        * :focus {
+            outline: none;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        ::-webkit-scrollbar-track {
+            display: none;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            display: none;
         }
 
         html, body {
@@ -16,6 +47,12 @@
             width: 100%;
             height: 100%;
             display: flex;
+            background: var(--background-color);
+        }
+
+        .not-selectable {
+            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+            -webkit-user-drag: none;
         }
 
         #unsupportedExplorerContainer {
@@ -69,61 +106,34 @@
         }
 
         #clockContainer {
-            z-index: -1;
+            z-index: 0;
             position: absolute;
             top: 0;
             left: 0;
             width: calc(100vw - 2rem);
             height: calc(100vh - 2rem);
             display: flex;
-            -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-            -moz-flex-direction: column;
-            flex-direction: column;
-            -webkit-flex-wrap: nowrap;
-            -ms-flex-wrap: nowrap;
-            -moz-flex-wrap: nowrap;
-            flex-wrap: nowrap;
-            -webkit-justify-content: center;
-            -moz-justify-content: center;
-            justify-content: center;
-            -webkit-align-items: center;
-            align-items: center;
+            -webkit-flex-direction: column; -ms-flex-direction: column; -moz-flex-direction: column; flex-direction: column;
+            -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; -moz-flex-wrap: nowrap; flex-wrap: nowrap;
+            -webkit-justify-content: center; -moz-justify-content: center; justify-content: center;
+            -webkit-align-items: center; align-items: center;
             padding: 1rem;
-            .fullscreen :hover {
-                cursor: pointer;
-            }
             #clock {
                 opacity: 0;
                 translate: 0 1rem;
-                font-size: 15rem;
+                font-size: min(15rem, 20vw);
                 font-weight: 500;
-                -webkit-filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
-                filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
-                -webkit-transition: .2s ease all;
-                -moz-transition: .2s ease all;
-                -o-transition: .2s ease all;
-                transition: .2s ease all;
-                -webkit-animation: 1s ease 0s both clockElementShown;
-                -moz-animation: 1s ease 0s both clockElementShown;
-                -o-animation: 1s ease 0s both clockElementShown;
-                animation: 1s ease 0s both clockElementShown;
+                -webkit-filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3)); filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
+                -webkit-animation: 1s ease 0s both clockElementShown; -moz-animation: 1s ease 0s both clockElementShown; -o-animation: 1s ease 0s both clockElementShown; animation: 1s ease 0s both clockElementShown;
             }
             #date {
                 opacity: 0;
                 translate: 0 1rem;
-                font-size: 1.5rem;
+                font-size: min(1.5rem, 3vw);
                 font-weight: 300;
                 -webkit-filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
                 filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
-                -webkit-transition: .2s ease all;
-                -moz-transition: .2s ease all;
-                -o-transition: .2s ease all;
-                transition: .2s ease all;
-                -webkit-animation: 1s ease .2s both clockElementShown;
-                -moz-animation: 1s ease .2s both clockElementShown;
-                -o-animation: 1s ease .2s both clockElementShown;
-                animation: 1s ease .2s both clockElementShown;
+                -webkit-animation: 1s ease .2s both clockElementShown; -moz-animation: 1s ease .2s both clockElementShown; -o-animation: 1s ease .2s both clockElementShown; animation: 1s ease .2s both clockElementShown;
             }
         }
 
@@ -150,15 +160,9 @@
             -ms-flex-direction: row;
             -moz-flex-direction: row;
             flex-direction: row;
-            -webkit-flex-wrap: nowrap;
-            -ms-flex-wrap: nowrap;
-            -moz-flex-wrap: nowrap;
-            flex-wrap: nowrap;
-            -webkit-justify-content: space-between;
-            -moz-justify-content: space-between;
-            justify-content: space-between;
-            -webkit-align-items: center;
-            align-items: center;
+            -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; -moz-flex-wrap: nowrap; flex-wrap: nowrap;
+            -webkit-justify-content: space-between; -moz-justify-content: space-between; justify-content: space-between;
+            -webkit-align-items: center;align-items: center;
             padding: 1rem;
             * {
                 -webkit-transition: .2s ease all;
@@ -169,8 +173,21 @@
             * :hover {
                 cursor: pointer;
                 translate: 0 -5px 3px;
-                -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-                filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+                -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+            }
+            .item {
+                -webkit-animation: 1s ease .5s both clockElementShown; -moz-animation: 1s ease .5s both clockElementShown; -o-animation: 1s ease .5s both clockElementShown; animation: 1s ease .5s both clockElementShown;
+                svg path {
+                    @media (prefers-color-scheme: light) {
+                        fill: rgb(0, 0, 0);
+                    }
+                    @media (prefers-color-scheme: dark) {
+                        fill: rgb(255, 255, 255);
+                    }
+                }
+            }
+            .item :hover {
+                cursor: pointer;
             }
         }
         </style>
@@ -235,18 +252,20 @@
         }
         </script>
     </head>
-    <body>
+    <body class="not-selectable">
         <div id="clockContainer">
-            <a id="clock"></a>
-            <a id="date"></a>
+            <span id="clock"></span>
+            <span id="date"></span>
         </div>
         <div class="navigationContainer">
-            <a onclick="clockFullscreen()" style="-webkit-animation: 1s ease .5s both clockElementShown; -moz-animation: 1s ease .5s both clockElementShown; -o-animation: 1s ease .5s both clockElementShown; animation: 1s ease .5s both clockElementShown;">
-                <svg class="icon" style="width: 3rem; height: 3rem; vertical-align: middle; fill: currentColor; overflow: hidden;" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" p-id="2732"><path d="M170.666667 170.666667v213.333333H85.333333V85.333333h298.666667v85.333334H170.666667z m682.666666 213.333333V170.666667h-213.333333V85.333333h298.666667v298.666667h-85.333334zM170.666667 640v213.333333h213.333333v85.333334H85.333333v-298.666667h85.333334z m682.666666 0h85.333334v298.666667h-298.666667v-85.333334h213.333333v-213.333333z" fill="#2E2F30" p-id="2733"></path></svg>
+            <a class="item" onclick="clockFullscreen()">
+                <svg style="width: 3rem; height: 3rem; vertical-align: middle; overflow: hidden;" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M170.666667 170.666667v213.333333H85.333333V85.333333h298.666667v85.333334H170.666667z m682.666666 213.333333V170.666667h-213.333333V85.333333h298.666667v298.666667h-85.333334zM170.666667 640v213.333333h213.333333v85.333334H85.333333v-298.666667h85.333334z m682.666666 0h85.333334v298.666667h-298.666667v-85.333334h213.333333v-213.333333z"></path>
+                </svg>
             </a>
         </div>
         <div id="unsupportedExplorerContainer">
-            <a>你正在使用不被支持的浏览器。</a>
+            <span>你正在使用不被支持的浏览器。</span>
         </div>
     </body>
 </html>
