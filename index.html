@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hans">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -202,7 +202,6 @@
         <div class="header" id="header">
             <div style="display: inline-block; width: 100%;">
                 <a class="item left" href="javascript:void(0);" onclick="goTop(0);">主页</a>
-                <a class="item left" href="javascript:void(0);" onclick="goTop(document.documentElement.clientHeight);">作品</a>
                 <a class="item right" href="https://space.bilibili.com/397180026"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;" alt=""> 哔哩哔哩</a>
                 <a class="item right" href="https://github.com/CoolCLK"><img id="headerGithubFavicon" src="https://github.githubassets.com/favicons/favicon-dark.svg" style="height: 1.25em;" alt="]"> Github</a>
             </div>
@@ -215,95 +214,7 @@
             </div>
         </div>
         <div class="content" style="background: linear-gradient(180deg, black, white 37.5%); color: black; display: flex; justify-content: center; align-items: center;">
-            <div style="margin: 10% 10% 5% 10%;">
-                <p style="font-size: 200%; font-weight: bold;" class="typing-text" typing-text="作品 PROJECTS" typing-relay="100" typing-foreground="true"></p>
-                
-                <div id="carouselProjectIndicators" class="carousel slide" data-bs-ride="carousel" data-pause="hover">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="1" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="2" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="3" aria-label=""></button>
-                        <button type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide-to="4" aria-label=""></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="res/projects/52e1fbe051d9127f34ea8b3b3e473e1ff6752c9b.jpg" class="d-block w-100" alt="" height="500rem">
-                            <br>
-                            <div style="margin: 0 15% 5% 15%;">
-                                <a style="font-size: 150%; font-weight: bold;" class="typing-text" typing-text="天域 (Sky Dimension)" typing-relay="100"></a>
-                                <br>
-                                <a style="font-size: 100%;" class="typing-text" typing-text="    这是一款来自 Minecraft 古早版本的一个现已被移除维度的 1.12.2 Forge 模组, 你可以在这款模组中体验到曾经出现过的天域。" typing-relay="50"></a>
-                                <p style="float: right;">
-                                    <a class="link" href="https://github.com/CoolCLK/SkyDimension"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1bN411e7pY/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="res/projects/43fee5a9aaf30d5473f29acd22e91ec11aaf5d61.jpg" class="d-block w-100" alt="" height="500rem">
-                            <br>
-                            <div style="margin: 0 15% 5% 15%;">
-                                <a style="font-size: 150%; font-weight: bold;" class="typing-text" typing-text="Note Music" typing-relay="100"></a>
-                                <br>
-                                <a style="font-size: 100%;" class="typing-text" typing-text="    这是一款基于 Minecraft Spigot 的服务端插件, 转载后可使用音符盒音效来播放 MIDI 音乐。" typing-relay="50"></a>
-                                <p style="float: right;">
-                                    <a class="link" href="https://github.com/CoolCLK/NoteMusic"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1C84y1U7oq/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="res/projects/b53ce968a9fa41263351c1f402dceee1e292c32d.jpg" class="d-block w-100" alt="" height="500rem">
-                            <br>
-                            <div style="margin: 0 15% 5% 15%;">
-                                <a style="font-size: 150%; font-weight: bold;" class="typing-text" typing-text="Bedwars Games" typing-relay="100"></a>
-                                <br>
-                                <a style="font-size: 100%;" class="typing-text" typing-text="    这是一款基于 Minecraft Spigot 、且依赖于 BedwarsRel 的服务端插件, 装载后可丰富对 Bedwars 游戏的修改的独立性。" typing-relay="50"></a>
-                                <p style="float: right;">
-                                    <a class="link" href="https://github.com/CoolCLK/BedwarsGames"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
-                                    <a class="link" href="https://www.mcbbs.net/thread-1420616-1-1.html"><img src="https://www.mcbbs.net/favicon.ico" style="height: 1.25em;"> MCBBS</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1M34y1u7rr/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="res/projects/Wechat_Shotcut_20231209234118.png" class="d-block w-100" alt="" height="500rem">
-                            <br>
-                            <div style="margin: 0 15% 5% 15%;">
-                                <a style="font-size: 150%; font-weight: bold;" class="typing-text" typing-text="Faker" typing-relay="100"></a>
-                                <br>
-                                <a style="font-size: 100%;" class="typing-text" typing-text="    这是一款基于 Minecraft Forge 1.8.9 与 Mixin 的字节码反编译作弊类模组, 装载后可让你变得强大。" typing-relay="50"></a>
-                                <p style="float: right;">
-                                    <a class="link" href="https://github.com/CoolCLK/Faker"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1x14y1v74r/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="res/projects/c84a3478c4ebf1aaf4476f74ca5b745dde56d879.jpg" class="d-block w-100" alt="" height="500rem">
-                            <br>
-                            <div style="margin: 0 15% 5% 15%;">
-                                <a style="font-size: 150%; font-weight: bold;" class="typing-text" typing-text="WDisk" typing-relay="100"></a>
-                                <br>
-                                <a style="font-size: 100%;" class="typing-text" typing-text="    这是一款基于 SpringBoot 的 Web 项目, 可用于个人网盘。" typing-relay="50"></a>
-                                <p style="float: right;">
-                                    <a class="link" href="https://github.com/CoolCLK/WDisk"><img src="https://github.githubassets.com/favicons/favicon.svg" style="height: 1.25em;"> Github</a>
-                                    <a class="link" href="https://www.bilibili.com/video/BV1Xo4y1K7We/"><img src="https://www.bilibili.com/favicon.ico" style="height: 1.25em;"> 哔哩哔哩</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProjectIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"></span>
-                    </button>
-                </div>
-            </div>
+            <span>⚠ 施工中 ⚠</span>
         </div>
         <div class="footer">
             Powered by CoolCLK
